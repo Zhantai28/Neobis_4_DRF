@@ -16,9 +16,13 @@ class Branch(models.Model):
 
 
 class Contact(models.Model):
-    email = models.EmailField()
-    facebook = models.CharField(max_length=60)
-    phone = models.IntegerField(blank=True)
+    contacts_choises = [
+        (1, "PHONE"),
+        (2, "FACEBOOK"),
+        (3, "EMAIL")
+    ]
+    contacts = models.IntegerField(choices=contacts_choises, default=1)
+    value = models.CharField(max_length=300)
 
 
 class Course(models.Model):
@@ -28,6 +32,6 @@ class Course(models.Model):
         'Category', related_name='categories', on_delete=models.CASCADE)
     logo = models.ImageField(blank=True, null=True)
     contacts = models.ForeignKey(
-        'Contact', related_name='contacts', on_delete=models.CASCADE)
+        'Contact', related_name='contactes', on_delete=models.CASCADE)
     branches = models.ForeignKey(
         'Branch', related_name='branches', on_delete=models.CASCADE)
