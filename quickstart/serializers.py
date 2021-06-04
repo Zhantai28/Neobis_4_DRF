@@ -28,7 +28,7 @@ class CourseSerializer(serializers.ModelSerializer):
         branches = validated_data.pop('branches')
         course = Course.objects.create(**validated_data)
         for course_data in contacts:
-            Course.objects.create(course=course, **course_data)
+            Contact.objects.create(course=course, **course_data)
         for course_data in branches:
-            Course.objects.create(course=course, **course_data)
+            Branch.objects.create(course=course, **course_data)
         return course
